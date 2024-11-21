@@ -1,21 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.header-navbar {
+  background: linear-gradient(85deg, hsl(7deg 0% 0%) -65.62%, hsl(0deg 11.76% 3.65% / 78%) 83.28%);
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, .2);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #c5c5ca;
+}
+
+.titleshadow {
+  text-shadow: 8px 5px 0 #000000, 2px 5px 0 #000000, 2px 7px 0 #000000, 2px 6px 0 #000000;
+}
+
+.gradiente-background {
+  background-image: linear-gradient(to right, #141624 100%, rgba(0, 0, 0, 0.53) 100%);
+}
+
+/* Equivalente ao md do Tailwind */
+@media (min-width: 768px) {
+  .gradiente-background {
+    background-image: radial-gradient(circle, #141624 50%, rgba(0, 0, 0, 0.53) 100%);
+  }
 }

@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model User {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  username       String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  role           String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  accounts       Account[]
+}
+
+model Jogador {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  nome     String
+  vitorias Int    @default(0)
+  derrotas Int?   @default(0)
+  bagre    Int?   @default(0)
+  mvp      Int?   @default(0)
+}
+
+model Partida {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  mvpId     String?  @db.ObjectId
+  bagreId   String?  @db.ObjectId
+  time1Ids  String[] @db.ObjectId
+  time2Ids  String[] @db.ObjectId
+  vitoria   String?
+  derrota   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
