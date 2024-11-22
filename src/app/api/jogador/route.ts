@@ -1,4 +1,3 @@
-// src/app/api/jogador/route.ts (GET)
 import { db as prisma } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 

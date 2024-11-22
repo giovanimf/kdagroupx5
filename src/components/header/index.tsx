@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import Navbar from "@/components/navbar";
-import backgroundImage from "@/assets/general/background.jpg";
+import backgroundImage from "@/assets/general/background.webp";
 
 interface ContainerProps {
   children: ReactNode;

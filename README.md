@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gerenciamento de Partidas - Sorteio e Ranking de Jogadores 🎮⚽
 
-## Getting Started
+## Sobre o Projeto
 
-First, run the development server:
+Esse é um projeto que desenvolvi para facilitar a organização de partidas entre amigos. O sistema sorteia **10 jogadores aleatórios** divididos em **dois times de 5**, permitindo saber quem fará parte de cada equipe. Além disso, implementei um recurso de **arrastar e soltar (drag and drop)** para ajustes manuais, caso seja necessário balancear os times ou cadastrar uma nova partida.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Com esse sistema, também é possível realizar diversos controles, como:
+- **Ranking de jogadores** com mais vitórias e derrotas.
+- Sistema de **MVP** (Melhor Jogador da Partida) e **Bagre** (Pior Jogador da Partida).
+- Monitoramento do desempenho individual e coletivo.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Este projeto nasceu da necessidade de um grupo de amigos que se reúne quase todos os dias para jogar. Agora, podemos acompanhar o desempenho de cada um com mais facilidade. Além disso, esse projeto foi uma oportunidade para testar e melhorar minhas habilidades como desenvolvedor **fullstack**, sendo um desafio avançado e complexo.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tecnologias Utilizadas 🛠️
 
-## Learn More
+- **Frontend**: [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/)
+- **Backend**: [Prisma](https://www.prisma.io/), [MongoDB](https://www.mongodb.com/), [NextAuth](https://next-auth.js.org/)
+- **Outros Recursos**:
+  - Login por JWT com **NextAuth** para treinar autenticação.
+  - Implementação de **drag and drop** para interatividade.
+  - Utilização de `middleware.ts` para segurança de rotas privadas.
+  - Otimização de desempenho com imagens em formato **WebP**.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Status do Projeto 🚧
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+O sistema ainda está **incompleto**, mas em fase avançada de desenvolvimento. 
 
-## Deploy on Vercel
+### Funcionalidades Implementadas:
+- Sorteio automático e manual de times.
+- Sistema de arrastar e soltar para edição de partidas.
+- Cadastro de novos jogadores.
+- Ranking com dados de vitórias, derrotas, MVPs e Bagres.
+- Edição de uma partida.
+- Excluir partida ( Retirando também informações já cadastradas antes no perfil do jogador pra não influenciar no ranking)
+- Ranking possui um sistema de Elo ( Categoria de cada jogador baseado na quantidade de vitórias ) sendo dividas em 5.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Ajustes Pendentes:
+- Finalizar o design responsivo (Mas o foco é no desktop).
+- Melhorar a experiência no **mobile**.
+- Refatorar alguns trechos de código para melhorar desempenho e manutenibilidade.
+- Criar uma página para edição do perfil de jogadores cadastrados e exclusão.
+- Implementar Toasts para ajudar a experiência do usuário como na página de login, cadastro, edição entre outros lugares.
+- Apesar dos ajustes pendentes, o sistema já está todo funcional sendo a maioria ajustes visuais para finalizar.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Imagens do Projeto 📸
+*Abaixo algumas imagens ilustrativas do sistema em funcionamento:*
+
+### Tela de Logiun
+![Tela Inicial](src/assets/general/page-login.png)
+
+### Sistema de criar partida
+![Drag and Drop](src/assets/general/page-criar-partida.png)
+
+### Sistema de criar partida com drag and drop
+![Drag and Drop](src/assets/general/page-drag-and-drop.png)
+
+### Ranking de Jogadores
+![Ranking](src/assets/general/page-ranking.png)
+
+### Ranking de Jogadores
+![Ranking](src/assets/general/page-partidas.png)
+
+---
+
+### Por que desenvolvi este projeto? 🏆
+
+#### Demo : https://kdagroupx5.vercel.app/
+---
+
+### Por que desenvolvi este projeto? 🏆
+
+Este projeto é fruto de encontros regulares com amigos e surgiu como uma forma de automatizar e melhorar a organização das partidas. Além disso, foi uma excelente oportunidade para:
+- Treinar técnicas avançadas de desenvolvimento fullstack.
+- Explorar boas práticas com Next.js, Tailwind e Prisma.
+- Trabalhar com autenticação segura usando NextAuth e JWT.
+
+---
+É isso 🚀
