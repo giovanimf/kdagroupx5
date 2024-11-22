@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FaGamepad, FaTrophy } from "react-icons/fa";
+import { FiList } from "react-icons/fi";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth"; // Certifique-se de configurar isso corretamente
 
@@ -37,6 +38,15 @@ export default async function PainelHome({ page }: PainelHomeProps) {
           >
             <FaTrophy size={25} />
             <span>Ranking</span>
+          </div>
+        </Link>
+        <Link href="/partidas">
+          <div
+            className={`md:hidden flex items-center gap-4 p-4 rounded cursor-pointer hover:bg-colorMintGreen hover:text-deepcharcoal transition-colors text-black font-bold ${page === "ranking" ? "bg-colorMintGreen" : "bg-colorSkyBlue"
+              }`}
+          >
+            <FiList size={25} />
+            <span>Partidas</span>
           </div>
         </Link>
       </div>

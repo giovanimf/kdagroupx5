@@ -73,15 +73,6 @@ const Ranking = () => {
 
   return (
     <div className="p-4 bg-colorDeepCharcoal text-white rounded-md overflow-x-auto">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Ranking de Jogadores</h1>
-        <button
-          className="bg-colorSkyBlue hover:bg-colorMintGreen text-black px-4 py-2 rounded"
-          onClick={() => fetchRanking(true)}
-        >
-          Atualizar
-        </button>
-      </div>
       <table className="w-full border-collapse border border-slate-500 text-center">
         <thead>
           <tr className="bg-colorSlateBlue text-white">
