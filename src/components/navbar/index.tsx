@@ -17,7 +17,7 @@ const nav_itens: NavItem[] = [
   { name: 'Home', href: '/', icon: <FaHome /> },
   { name: 'Ranking', href: '/ranking', icon: <FaTrophy /> },
   { name: 'Criar x5', href: '/criarx5', icon: <FaGamepad /> },
-  { name: 'Cadastrar jogador', href: '/cadastrar-jogador', icon: <FaInfoCircle /> },
+  { name: 'Jogadores', href: '/jogadores', icon: <FaInfoCircle /> },
   { name: 'Partidas', href: '/partidas', icon: <FiList /> },
 ];
 
