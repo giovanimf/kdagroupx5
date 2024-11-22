@@ -31,7 +31,7 @@ export default function Navbar() {
     <nav className="flex items-center justify-between md:p-0 p-4 h-20 max-w-screen-xl mx-auto">
       {/* Logo */}
       <Link href="/" className="flex items-center">
-        <span className="text-2xl font-semibold font-chakra text-titlebase2 hover:text-colorMintGreen">
+        <span className="text-xl font-semibold font-chakra text-titlebase2 hover:text-colorMintGreen">
           KDA GROUP - X5
         </span>
       </Link>

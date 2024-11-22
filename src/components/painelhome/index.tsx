@@ -15,7 +15,7 @@ export default async function PainelHome({ page }: PainelHomeProps) {
   return (
     <>
       <Link href="/">
-        <span className="md:text-7xl text-5xl font-semibold font-chakra text-titlebase2 hover:text-colorMintGreen titleshadow">
+        <span className="md:text-7xl text-3xl font-semibold font-chakra text-titlebase2 hover:text-colorMintGreen titleshadow">
           KDA GROUP - X5
         </span>
       </Link>
