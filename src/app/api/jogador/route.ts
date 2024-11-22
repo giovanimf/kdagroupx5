@@ -1,6 +1,9 @@
 import { db as prisma } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 
+// Força a atualização dinâmica
+export const dynamic = "force-dynamic";
+
 // Rota para listar todos os jogadores
 export async function GET(request: NextRequest) {
   try {
