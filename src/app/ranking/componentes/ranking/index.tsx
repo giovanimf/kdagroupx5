@@ -15,59 +15,46 @@ const Ranking = () => {
   const [jogadores, setJogadores] = useState<Jogador[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const fetchRanking = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/jogador", { cache: "no-store" }); // Garante que os dados não venham do cache
+      if (!response.ok) throw new Error("Erro ao buscar ranking.");
+      const data = await response.json();
+
+      // Ordena por número de vitórias (desc) e, em seguida, por nome (asc)
+      const sortedData = data.sort(
+        (a: Jogador, b: Jogador) =>
+          b.vitorias - a.vitorias || a.nome.localeCompare(b.nome)
+      );
+
+      setJogadores(sortedData);
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao carregar o ranking.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchRanking = async () => {
-      try {
-        const response = await fetch("/api/jogador", { cache: "no-store" });
-        if (!response.ok) throw new Error("Erro: Erro ao buscar ranking.");
-        const data = await response.json();
-
-        // Ordena por número de vitórias (desc) e, em seguida, por nome (asc)
-        const sortedData = data.sort(
-          (a: Jogador, b: Jogador) =>
-            b.vitorias - a.vitorias || a.nome.localeCompare(b.nome)
-        );
-
-        setJogadores(sortedData);
-      } catch (error) {
-        console.error(error);
-        alert("Erro: Erro ao carregar o ranking.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchRanking();
   }, []);
 
-  // Define categorias dinâmicas com base nas vitórias
   const atribuirCategorias = (jogadores: Jogador[]) => {
     const categorias: Record<string, string> = {};
-    const vitoriasPorCategoria = new Map<number, string>();
-
-    // Definir categorias dinâmicas com base nas posições
     const categoriasLista = ["Ouro", "Prata", "Bronze", "Ferro", "Alumínio"];
-
     let posicaoAtual = 0;
 
     for (let i = 0; i < jogadores.length; i++) {
       const jogador = jogadores[i];
-
       if (i === 0 || jogador.vitorias < jogadores[i - 1].vitorias) {
         posicaoAtual++;
       }
-
-      const categoria =
+      categorias[jogador.id] =
         posicaoAtual <= categoriasLista.length
           ? categoriasLista[posicaoAtual - 1]
           : "Alumínio";
-
-      categorias[jogador.id] = categoria;
-
-      // Associar vitórias com a categoria correspondente
-      if (!vitoriasPorCategoria.has(jogador.vitorias)) {
-        vitoriasPorCategoria.set(jogador.vitorias, categoria);
-      }
     }
 
     return categorias;
@@ -79,7 +66,15 @@ const Ranking = () => {
 
   return (
     <div className="p-4 bg-colorDeepCharcoal text-white rounded-md overflow-x-auto">
-      <h1 className="text-2xl font-bold mb-4">Ranking de Jogadores</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold">Ranking de Jogadores</h1>
+        <button
+          className="bg-colorSkyBlue hover:bg-colorMintGreen text-black px-4 py-2 rounded"
+          onClick={fetchRanking}
+        >
+          Atualizar
+        </button>
+      </div>
       <table className="w-full border-collapse border border-slate-500 text-center">
         <thead>
           <tr className="bg-colorSlateBlue text-white">
@@ -107,17 +102,30 @@ const Ranking = () => {
                       : "bg-gray-400 text-black";
 
             return (
-              <tr key={jogador.id} className={`${index % 2 === 0 ? "bg-gray-800" : "bg-gray-700"}`}>
-                <td className={`border border-slate-700 w-auto p-1 ${categoriaCor}`}>
+              <tr
+                key={jogador.id}
+                className={`${index % 2 === 0 ? "bg-gray-800" : "bg-gray-700"}`}
+              >
+                <td
+                  className={`border border-slate-700 w-auto p-1 ${categoriaCor}`}
+                >
                   {categoria}
                 </td>
                 <td className="border border-slate-700 p-1 whitespace-nowrap">
                   {jogador.nome}
                 </td>
-                <td className="border border-slate-700 p-1">{jogador.vitorias}</td>
-                <td className="border border-slate-700 p-1">{jogador.derrotas || 0}</td>
-                <td className="border border-slate-700 p-1">{jogador.mvp || 0}</td>
-                <td className="border border-slate-700 p-1">{jogador.bagre || 0}</td>
+                <td className="border border-slate-700 p-1">
+                  {jogador.vitorias}
+                </td>
+                <td className="border border-slate-700 p-1">
+                  {jogador.derrotas || 0}
+                </td>
+                <td className="border border-slate-700 p-1">
+                  {jogador.mvp || 0}
+                </td>
+                <td className="border border-slate-700 p-1">
+                  {jogador.bagre || 0}
+                </td>
                 <td className="border border-slate-700 p-1">
                   {jogador.vitorias + (jogador.derrotas || 0)}
                 </td>
