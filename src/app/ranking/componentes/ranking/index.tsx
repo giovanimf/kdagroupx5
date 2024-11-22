@@ -18,7 +18,7 @@ const Ranking = () => {
   useEffect(() => {
     const fetchRanking = async () => {
       try {
-        const response = await fetch("/api/jogador");
+        const response = await fetch("/api/jogador", { cache: "no-store" });
         if (!response.ok) throw new Error("Erro: Erro ao buscar ranking.");
         const data = await response.json();
 
