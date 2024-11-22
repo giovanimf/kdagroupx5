@@ -77,7 +77,7 @@ const Ranking = () => {
         <h1 className="text-2xl font-bold">Ranking de Jogadores</h1>
         <button
           className="bg-colorSkyBlue hover:color- text-black px-4 py-2 rounded"
-          onClick={fetchRanking}
+          onClick={() => fetchRanking(true)}
         >
           Atualizar
         </button>
