@@ -15,17 +15,22 @@ const Ranking = () => {
   const [jogadores, setJogadores] = useState<Jogador[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchRanking = async () => {
-    setLoading(true);
+  const fetchRanking = async (isManualUpdate = false): Promise<void> => {
+    if (isManualUpdate) setLoading(true); // Mostra carregando ao clicar no botão
     try {
-      const response = await fetch("/api/jogador", { cache: "no-store" }); // Garante que os dados não venham do cache
-      if (!response.ok) throw new Error("Erro ao buscar ranking.");
-      const data = await response.json();
+      // Adicione um parâmetro dinâmico para evitar cache
+      const response = await fetch(`/api/jogador?_=${Date.now()}`, {
+        method: "GET",
+        cache: "no-store", // Garante que sempre buscará do servidor
+      });
 
-      // Ordena por número de vitórias (desc) e, em seguida, por nome (asc)
+      if (!response.ok) throw new Error("Erro ao buscar ranking.");
+
+      // Tipagem do JSON garantida pelo tipo Jogador[]
+      const data: Jogador[] = await response.json();
+
       const sortedData = data.sort(
-        (a: Jogador, b: Jogador) =>
-          b.vitorias - a.vitorias || a.nome.localeCompare(b.nome)
+        (a, b) => b.vitorias - a.vitorias || a.nome.localeCompare(b.nome)
       );
 
       setJogadores(sortedData);
@@ -36,6 +41,8 @@ const Ranking = () => {
       setLoading(false);
     }
   };
+
+
 
   useEffect(() => {
     fetchRanking();
