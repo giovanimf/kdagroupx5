@@ -42,7 +42,7 @@ export default async function PainelHome({ page }: PainelHomeProps) {
         </Link>
         <Link href="/partidas">
           <div
-            className={`md:hidden flex items-center gap-4 p-4 rounded cursor-pointer hover:bg-colorMintGreen hover:text-deepcharcoal transition-colors text-black font-bold ${page === "ranking" ? "bg-colorMintGreen" : "bg-colorSkyBlue"
+            className={`flex items-center gap-4 p-4 rounded cursor-pointer hover:bg-colorMintGreen hover:text-deepcharcoal transition-colors text-black font-bold ${page === "ranking" ? "bg-colorMintGreen" : "bg-colorSkyBlue"
               }`}
           >
             <FiList size={25} />
